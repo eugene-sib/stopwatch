@@ -2,19 +2,19 @@
 import { ref } from "vue";
 import Stopwatch from "./components/Stopwatch.vue";
 
-const stopwatches = ref([{ name: "Stopwatch" }]);
+const elements = ref([{ type: Stopwatch }]);
 
-function addStopwatch() {
-  stopwatches.value.push({ name: "Stopwatch" });
+function addElement(type) {
+  elements.value.push({ type });
 }
 </script>
 
 <template>
   <section class="stopwatches">
-    <div v-for="(stopwatch, index) in stopwatches" :key="index">
-      <component :key="index" :is="Stopwatch"></component>
+    <div v-for="(el, index) in elements" :key="index">
+      <component :key="index" :is="el.type"></component>
     </div>
-    <button type="button" @click="addStopwatch()" class="btn btn-add">
+    <button type="button" @click="addElement(Stopwatch)" class="btn btn-add">
       <svg
         width="40px"
         height="40px"
